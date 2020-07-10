@@ -24,8 +24,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Reference Include="0Harmony, Version=2.0.0.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.0.9\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.1\lib\net472\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -34,15 +34,23 @@
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLib.7.2.1\lib\net472\HugsLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ISharpZipLib">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\ISharpZipLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Mono.Posix.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Mono.Security.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

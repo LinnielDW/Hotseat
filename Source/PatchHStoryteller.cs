@@ -13,11 +13,9 @@ namespace Hotseat
         {
             Log.Message("tryfire postfix");
             Log.Message(Current.Game.storyteller.def.defName);
-            /*Log.Message(Find.Storyteller.storytellerComps.ToString());*/
 
             changeStoryTeller();
 
-            Log.Message("Storyteller changed.");
             Log.Message(Current.Game.storyteller.def.defName);
         }
 
@@ -31,7 +29,6 @@ namespace Hotseat
             {
                 Log.Message("Storyteller remains... for now");
             }
-            //TODO: This method doesn't work.
         }
 
 
@@ -50,6 +47,8 @@ namespace Hotseat
             {
                 Current.Game.storyteller.def = newStorytellerDef;
                 Current.Game.storyteller.Notify_DefChanged();
+
+                Log.Message("Storyteller changed.");
             }
         }
     }

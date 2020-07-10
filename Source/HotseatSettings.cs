@@ -1,38 +1,59 @@
-﻿using UnityEngine;
-using Verse;
+﻿//using RimWorld;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using Verse;
 
 namespace Hotseat
 {
+    //public class storytellerEnabled : IExposable
+    //{
+    //    public bool storytellerEnabledBool = true;
+    //    public storytellerEnabled(bool storytellerEnabled)
+    //    {
+    //        storytellerEnabledBool = storytellerEnabled;
+    //    }
 
-    public class HotseatSettings : ModSettings
-    {
-        /// <summary>
-        /// The three settings our mod has.
-        /// </summary>
-        public bool exampleBool;
-        public float exampleFloat = 200f;
+    //    public void ExposeData()
+    //    {
+    //        Scribe_Values.Look(ref storytellerEnabledBool, "storytellerEnabledBool");
+    //    }
+    //}
 
-        /// <summary>
-        /// The part that writes our settings to file. Note that saving is by ref.
-        /// </summary>
-        public override void ExposeData()
-        {
-            Scribe_Values.Look(ref exampleBool, "exampleBool");
-            Scribe_Values.Look(ref exampleFloat, "exampleFloat", 200f);
+    //public class HotseatSettings : ModSettings
+    //{
+    //    public Dictionary<string, storytellerEnabled> storyTellersEnabled = new Dictionary<string, storytellerEnabled>();
 
-            base.ExposeData();
-        }
+    //    public override void ExposeData()
+    //    {
+    //        Scribe_Collections.Look(ref storyTellersEnabled, "storyTellersEnabled");
+    //        base.ExposeData();
+    //    }
 
+    //    public void DoWindowContents(Rect inRect)
+    //    {
+    //        Listing_Standard listingStandard = new Listing_Standard();
+    //        listingStandard.Begin(inRect);
+    //        IEnumerable<StorytellerDef> storytellers = DefDatabase<StorytellerDef>.AllDefs;
 
-        public void DoWindowContents(Rect inRect)
-        {
-            Listing_Standard listingStandard = new Listing_Standard();
-            listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("exampleBoolExplanation", ref exampleBool, "exampleBoolToolTip");
-            listingStandard.Label("exampleFloatExplanation");
-            exampleFloat = listingStandard.Slider(exampleFloat, 10f, 300f);
-            listingStandard.End();
-        }
-    }
+    //        void getStorytellerEnabled(string storytellerDefName)
+    //        {
+    //            if (storyTellersEnabled.ContainsKey(storytellerDefName))
+    //            {
+    //                //return storyTellersEnabled[storytellerDefName].storytellerEnabledBool;
+    //                //listingStandard.CheckboxLabeled(storytellerDefName, ref storyTellersEnabled[storytellerDefName].storytellerEnabledBool, "test");
+    //            }
+    //            else
+    //            {
+    //                //false;
+    //            }
+    //        }
+
+    //        foreach (StorytellerDef storyteller in storytellers)
+    //        {
+    //            getStorytellerEnabled(storyteller.defName);
+    //        }
+    //        listingStandard.End();
+    //    }
+    //}
 
 }

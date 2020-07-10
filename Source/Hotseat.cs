@@ -1,38 +1,22 @@
-﻿using HarmonyLib;
-using System.Reflection;
-using UnityEngine;
+﻿
+using HarmonyLib;
+using HugsLib;
 using Verse;
-
 
 namespace Hotseat
 {
-    public class Hotseat : Mod
+    public class Hotseat : ModBase
     {
-
-        HotseatSettings settings;
-
-        public Hotseat(ModContentPack content) : base(content)
+        public override string ModIdentifier
         {
-            settings = GetSettings<HotseatSettings>();
-
-            var harmony = new Harmony("com.arquebus.rimworld.mod.hotseat");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            Harmony.DEBUG = true;
-
+            get { return "Hotseat"; }
+        }
+        public static Hotseat Instance { get; private set; }
+        public Hotseat()
+        {
             FileLog.Log("Hotseat harmony log");
             Log.Message("Hotseat Loaded");
+            Instance = this;
         }
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            settings.DoWindowContents(inRect);
-        }
-
-        public override string SettingsCategory()
-        {
-            return "HotseatModSettings";
-        }
-
     }
 }
