@@ -7,7 +7,7 @@ namespace Hotseat
 {
     [HarmonyPatch(typeof(IncidentWorker))]
     [HarmonyPatch("TryExecute")]
-    public static class PatchHStoryteller
+    public static class PatchStoryteller
     {
         static void Postfix()
         {
