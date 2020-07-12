@@ -1,13 +1,13 @@
-﻿
-using HarmonyLib;
-using HugsLib;
+﻿using HarmonyLib;
+using System.Reflection;
+using UnityEngine;
 using Verse;
 
 namespace Hotseat
 {
-    public class Hotseat : ModBase
+    public class Hotseat : Mod
     {
-        HotseatSettings settings;
+        readonly HotseatSettings settings;
 
         public Hotseat(ModContentPack content) : base(content)
         {
@@ -18,7 +18,6 @@ namespace Hotseat
 
             Log.Message("Hotseat Loaded");
         }
-
         public override void DoSettingsWindowContents(Rect inRect)
         {
             base.DoSettingsWindowContents(inRect);
