@@ -8,7 +8,6 @@ namespace Hotseat
 {
     public class Hotseat : Mod
     {
-
         HotseatSettings settings;
 
         public Hotseat(ModContentPack content) : base(content)
@@ -18,20 +17,18 @@ namespace Hotseat
             var harmony = new Harmony("com.arquebus.rimworld.mod.hotseat");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            Harmony.DEBUG = true;
-
-            FileLog.Log("Hotseat harmony log");
             Log.Message("Hotseat Loaded");
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            base.DoSettingsWindowContents(inRect);
             settings.DoWindowContents(inRect);
         }
 
         public override string SettingsCategory()
         {
-            return "HotseatModSettings";
+            return "HotseatSettingsTitle".Translate();
         }
 
     }
