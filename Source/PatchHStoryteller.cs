@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Hotseat
@@ -11,19 +12,38 @@ namespace Hotseat
     {
         static void Postfix()
         {
-            Log.Message("tryfire postfix");
-            Log.Message(Current.Game.storyteller.def.defName);
-
-            changeStoryTeller();
-
-            Log.Message(Current.Game.storyteller.def.defName);
+            if (HotseatSettings.enableStorytellerSwitching) {
+                Log.Message("TryExecute Postfix: Storyteller before is:" + Current.Game.storyteller.def.defName);
+                TryChangeStoryTeller(HotseatSettings.changeOnEventChance);
+            }
         }
 
-        private static void changeStoryTeller()
+        private static void TryChangeStoryTeller(int chanceTreshold)
         {
-            if (Rand.RangeInclusive(0, 100) < 5)
+            if (Rand.RangeInclusive(0, 100) <= chanceTreshold)
             {
-                chooseStoryTeller();
+                StorytellerDef storytellerDef;
+
+                try
+                {
+                    storytellerDef = ChooseStoryTeller();
+                }
+                catch
+                {
+                    Log.Warning("There were no storytellers that could be changed to. Keeping current storyteller.");
+                    return;
+                }
+
+                if (storytellerDef != null)
+                {
+                    Current.Game.storyteller.def = storytellerDef;
+                    Current.Game.storyteller.Notify_DefChanged();
+
+                    HotseatUtils.SendStorytellerChangeLetter();
+
+                    Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
+                }
+                else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell Arquebus.");
             }
             else
             {
@@ -32,24 +52,24 @@ namespace Hotseat
         }
 
 
-        private static void chooseStoryTeller()
+        private static StorytellerDef ChooseStoryTeller()
         {
-            IEnumerable<StorytellerDef> storytellers = DefDatabase<StorytellerDef>.AllDefs;
+            IEnumerable<StorytellerDef> storytellersFiltered = HotseatUtils.GetStorytellersFiltered();
 
-            StorytellerDef newStorytellerDef = storytellers.RandomElement();
-            Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
-            if (!newStorytellerDef.listVisible || newStorytellerDef == Current.Game.storyteller.def)
+            HotseatUtils.LogStorytellers(storytellersFiltered);
+
+            if (storytellersFiltered.Count() > 0)
             {
-                Log.Warning("new storyteller not suitable. Rechoosing.");
-                chooseStoryTeller();
+                StorytellerDef newStorytellerDef = storytellersFiltered.RandomElement();
+                Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
+
+                return newStorytellerDef;
             }
             else
             {
-                Current.Game.storyteller.def = newStorytellerDef;
-                Current.Game.storyteller.Notify_DefChanged();
-
-                Log.Message("Storyteller changed.");
+                throw new System.Exception("No valid storytellers");
             }
+
         }
     }
 }

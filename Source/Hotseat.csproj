@@ -245,9 +245,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HotseatSettings.cs" />
+    <Compile Include="HotseatUtils.cs" />
     <Compile Include="PatchHStoryteller.cs" />
     <Compile Include="Hotseat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StorytellerEnabled.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

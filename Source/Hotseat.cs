@@ -18,6 +18,7 @@ namespace Hotseat
 
             Log.Message("Hotseat Loaded");
         }
+
         public override void DoSettingsWindowContents(Rect inRect)
         {
             base.DoSettingsWindowContents(inRect);
