@@ -35,10 +35,10 @@ namespace Hotseat
 
         public static IEnumerable<StorytellerDef> GetStorytellersFiltered()
         {
-            return DefDatabase<StorytellerDef>.AllDefs.Where(x => x.listVisible
-                            && HotseatSettings.storyTellersEnabledDictionary.ContainsKey(x.defName)
-                            && x.defName != Current.Game.storyteller.def.defName
-                            && HotseatSettings.storyTellersEnabledDictionary[x.defName].storytellerEnabledBool
+            return DefDatabase<StorytellerDef>.AllDefs.Where(x => x.listVisible                                 //storyteller is visible
+                            && HotseatSettings.storyTellersEnabledDictionary.ContainsKey(x.defName)             //storyteller exists in dictionary (all storytellers should default to true)
+                            && x.defName != Current.Game.storyteller.def.defName                                //storyteller does not equal current storyteller
+                            && HotseatSettings.storyTellersEnabledDictionary[x.defName].storytellerEnabledBool  //storyteller is allowed to be switched to
                         );
         }
 
