@@ -6,5 +6,16 @@
   <EnableStorytellerSwitchingSettingToolTip>Enables Hotseat to dynamically change your storyteller midgame.</EnableStorytellerSwitchingSettingToolTip>
   <StorytellersArrayEnabledSettingTitle>Storytllers Enabled</StorytellersArrayEnabledSettingTitle>
   <StorytellersArrayEnabledSettingTooltip>Storytellers that Hotseat is allowed to switch to.</StorytellersArrayEnabledSettingTooltip>
-  <changeOnEventChance>Percentage chance storyteller changes on event</changeOnEventChance>
+  
+  <changeOnEventChance>Percent chance on event</changeOnEventChance>
+  <changeOnEventChanceTooltip>Percentage chance that the storyteller changes after an event.</changeOnEventChanceTooltip>
+  
+  <changeOnMonthChance>Percent chance on month</changeOnMonthChance>
+  <changeOnMonthChanceTooltip>Percentage chance that the storyteller changes after a new month.</changeOnMonthChanceTooltip>
+  
+  <changeOnYearChance>Percent chance on year</changeOnYearChance>
+  <changeOnYearChanceTooltip>Percentage chance that the storyteller changes after a new year.</changeOnYearChanceTooltip>
+  
+  <StorytellerChangeTitle>TODO: add StorytellerChangeTitle</StorytellerChangeTitle>
+
 </LanguageData>

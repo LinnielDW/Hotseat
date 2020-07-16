@@ -12,6 +12,7 @@ namespace Hotseat
     {
         public static string GetStorytellerChangeDescription()
         {
+            //TODO: change these strings to translation parts
             return "The storyteller has changed!\n Now " + Current.Game.storyteller.def.label + " is in charge!";
         }
 
@@ -28,9 +29,10 @@ namespace Hotseat
 
         public static void SendStorytellerChangeLetter()
         {
-            Find.LetterStack.ReceiveLetter("StorytellerChangeTitle", GetStorytellerChangeDescription(), LetterDefOf.NeutralEvent, null);
+            Find.LetterStack.ReceiveLetter("StorytellerChangeTitle".Translate(), GetStorytellerChangeDescription(), LetterDefOf.NeutralEvent, null);
             Log.Message("Storyteller changed.");
         }
+
         public static IEnumerable<StorytellerDef> GetStorytellersFiltered()
         {
             return DefDatabase<StorytellerDef>.AllDefs.Where(x => x.listVisible
@@ -38,6 +40,59 @@ namespace Hotseat
                             && x.defName != Current.Game.storyteller.def.defName
                             && HotseatSettings.storyTellersEnabledDictionary[x.defName].storytellerEnabledBool
                         );
+        }
+
+
+        public static void TryChangeStoryTeller(int chanceTreshold)
+        {
+            if (Rand.RangeInclusive(0, 100) <= chanceTreshold)
+            {
+                StorytellerDef storytellerDef;
+
+                try
+                {
+                    storytellerDef = ChooseStoryTeller();
+                }
+                catch
+                {
+                    Log.Warning("There were no storytellers that could be changed to. Keeping current storyteller.");
+                    return;
+                }
+
+                if (storytellerDef != null)
+                {
+                    Current.Game.storyteller.def = storytellerDef;
+                    Current.Game.storyteller.Notify_DefChanged();
+
+                    SendStorytellerChangeLetter();
+
+                    Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
+                }
+                else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell Arquebus.");
+            }
+            else
+            {
+                Log.Message("Storyteller remains... for now");
+            }
+        }
+
+        private static StorytellerDef ChooseStoryTeller()
+        {
+            IEnumerable<StorytellerDef> storytellersFiltered = GetStorytellersFiltered();
+
+            LogStorytellers(storytellersFiltered);
+
+            if (storytellersFiltered.Count() > 0)
+            {
+                StorytellerDef newStorytellerDef = storytellersFiltered.RandomElement();
+                Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
+
+                return newStorytellerDef;
+            }
+            else
+            {
+                throw new System.Exception("No valid storytellers");
+            }
         }
     }
 }

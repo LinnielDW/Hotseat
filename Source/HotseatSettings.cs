@@ -14,14 +14,18 @@ namespace Hotseat
 
     public class HotseatSettings : ModSettings
     {
-        public static bool enableStorytellerSwitching;
+        public static bool enableStorytellerSwitching = true;
         public static int changeOnEventChance = 5;
+        public static int changeOnYearChance = 80;
+        public static int changeOnMonthChance = 15;
         public static Dictionary<string, StorytellerEnabled> storyTellersEnabledDictionary = new Dictionary<string, StorytellerEnabled>();
 
         public override void ExposeData()
         {
             Scribe_Values.Look(ref enableStorytellerSwitching, "enableStorytellerSwitching");
             Scribe_Values.Look(ref changeOnEventChance, "changeOnEventChance");
+            Scribe_Values.Look(ref changeOnYearChance, "changeOnYearChance");
+            Scribe_Values.Look(ref changeOnMonthChance, "changeOnMonthChance");
 
             Scribe_Collections.Look(ref storyTellersEnabledDictionary, "storyTellersEnabled", LookMode.Value, LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.LoadingVars)
@@ -52,24 +56,30 @@ namespace Hotseat
 
             settingsList.CheckboxLabeled("EnableStorytellerSwitchingSetting".Translate(), ref enableStorytellerSwitching, "EnableStorytellerSwitchingSettingToolTip".Translate());
 
-            DrawChangeOnEventSetting(settingsList);
+            DrawLabelledNumericSetting(settingsList, changeOnYearChance, nameof(changeOnYearChance));
+            DrawLabelledNumericSetting(settingsList, changeOnMonthChance, nameof(changeOnMonthChance));
+            DrawLabelledNumericSetting(settingsList, changeOnEventChance, nameof(changeOnEventChance));
 
             //listingStandard.Label("exampleFloatExplanation");
             //exampleFloat = listingStandard.Slider(exampleFloat, 10f, 300f);
-            
+
             settingsList.NewColumn();
             DrawStorytellersEnabledSettingsDynamic(settingsList);
 
             settingsList.End();
         }
 
-        private static void DrawChangeOnEventSetting(Listing_Standard settingsList)
+        private static void DrawLabelledNumericSetting(Listing_Standard settingsList, int settingValue, string settingName)
         {
-            Rect changeOnEventSettingRect = settingsList.GetRect(28f);
-            string changeOnEventChanceBuffer = changeOnEventChance.ToString();
+            Rect numericSettingRect = settingsList.GetRect(24f);
+            string settingValueStringBuffer = settingValue.ToString();
 
-            Widgets.Label(changeOnEventSettingRect.LeftPart(0.8f).Rounded(), "changeOnEventChance".Translate());
-            Widgets.TextFieldNumeric<int>(changeOnEventSettingRect.RightPart(0.2f).Rounded(), ref changeOnEventChance, ref changeOnEventChanceBuffer, 0, 100);
+            Rect leftSide = numericSettingRect.LeftPart(0.8f).Rounded();
+
+            Widgets.Label(leftSide, settingName.Translate());
+            TooltipHandler.TipRegion(leftSide, (settingName + "Tooltip").Translate());
+
+            Widgets.TextFieldNumeric(numericSettingRect.RightPart(0.2f).Rounded(), ref settingValue, ref settingValueStringBuffer, 0, 100);
         }
 
         private void DrawStorytellersEnabledSettingsDynamic(Listing_Standard listingStandard)
