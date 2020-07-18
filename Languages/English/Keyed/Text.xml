@@ -7,15 +7,16 @@
   <StorytellersArrayEnabledSettingTitle>Storytllers Enabled</StorytellersArrayEnabledSettingTitle>
   <StorytellersArrayEnabledSettingTooltip>Storytellers that Hotseat is allowed to switch to.</StorytellersArrayEnabledSettingTooltip>
   
-  <changeOnEventChance>Percent chance on event</changeOnEventChance>
+  <changeOnEventChance>Percent chance per event</changeOnEventChance>
   <changeOnEventChanceTooltip>Percentage chance that the storyteller changes after an event.</changeOnEventChanceTooltip>
   
-  <changeOnMonthChance>Percent chance on month</changeOnMonthChance>
-  <changeOnMonthChanceTooltip>Percentage chance that the storyteller changes after a new month.</changeOnMonthChanceTooltip>
+  <changeOnQuadrumChance>Percent chance per quadrum</changeOnQuadrumChance>
+  <changeOnQuadrumChanceTooltip>Percentage chance that the storyteller changes after a new quadrum.</changeOnQuadrumChanceTooltip>
   
-  <changeOnYearChance>Percent chance on year</changeOnYearChance>
+  <changeOnYearChance>Percent chance per year</changeOnYearChance>
   <changeOnYearChanceTooltip>Percentage chance that the storyteller changes after a new year.</changeOnYearChanceTooltip>
   
-  <StorytellerChangeTitle>TODO: add StorytellerChangeTitle</StorytellerChangeTitle>
+  <StorytellerChangeLetterTitle>Storyteller Changed</StorytellerChangeLetterTitle>
+  <StorytellerChangeLetterDescription>The storyteller has changed!\n Now {0} is in charge!</StorytellerChangeLetterDescription>
 
 </LanguageData>

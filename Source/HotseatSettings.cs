@@ -15,9 +15,9 @@ namespace Hotseat
     public class HotseatSettings : ModSettings
     {
         public static bool enableStorytellerSwitching = true;
-        public static int changeOnEventChance = 5;
-        public static int changeOnYearChance = 80;
-        public static int changeOnMonthChance = 15;
+        public static int changeOnEventChance = 10;
+        public static int changeOnYearChance = 85;
+        public static int changeOnQuadrumChance = 25;
         public static Dictionary<string, StorytellerEnabled> storyTellersEnabledDictionary = new Dictionary<string, StorytellerEnabled>();
 
         public override void ExposeData()
@@ -25,7 +25,7 @@ namespace Hotseat
             Scribe_Values.Look(ref enableStorytellerSwitching, "enableStorytellerSwitching");
             Scribe_Values.Look(ref changeOnEventChance, "changeOnEventChance");
             Scribe_Values.Look(ref changeOnYearChance, "changeOnYearChance");
-            Scribe_Values.Look(ref changeOnMonthChance, "changeOnMonthChance");
+            Scribe_Values.Look(ref changeOnQuadrumChance, "changeOnQuadrumChance");
 
             Scribe_Collections.Look(ref storyTellersEnabledDictionary, "storyTellersEnabled", LookMode.Value, LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.LoadingVars)
@@ -56,9 +56,9 @@ namespace Hotseat
 
             settingsList.CheckboxLabeled("EnableStorytellerSwitchingSetting".Translate(), ref enableStorytellerSwitching, "EnableStorytellerSwitchingSettingToolTip".Translate());
 
-            DrawLabelledNumericSetting(settingsList, changeOnYearChance, nameof(changeOnYearChance));
-            DrawLabelledNumericSetting(settingsList, changeOnMonthChance, nameof(changeOnMonthChance));
-            DrawLabelledNumericSetting(settingsList, changeOnEventChance, nameof(changeOnEventChance));
+            DrawLabelledNumericSetting(settingsList, ref changeOnYearChance, nameof(changeOnYearChance));
+            DrawLabelledNumericSetting(settingsList, ref changeOnQuadrumChance, nameof(changeOnQuadrumChance));
+            DrawLabelledNumericSetting(settingsList, ref changeOnEventChance, nameof(changeOnEventChance));
 
             //listingStandard.Label("exampleFloatExplanation");
             //exampleFloat = listingStandard.Slider(exampleFloat, 10f, 300f);
@@ -69,7 +69,7 @@ namespace Hotseat
             settingsList.End();
         }
 
-        private static void DrawLabelledNumericSetting(Listing_Standard settingsList, int settingValue, string settingName)
+        private static void DrawLabelledNumericSetting(Listing_Standard settingsList, ref int settingValue, string settingName)
         {
             Rect numericSettingRect = settingsList.GetRect(24f);
             string settingValueStringBuffer = settingValue.ToString();

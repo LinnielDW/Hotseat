@@ -10,10 +10,11 @@ namespace Hotseat
 {
     class HotseatUtils
     {
-        public static string GetStorytellerChangeDescription()
+        public static string GetStorytellerChangeLetterDescription()
         {
             //TODO: change these strings to translation parts
-            return "The storyteller has changed!\n Now " + Current.Game.storyteller.def.label + " is in charge!";
+            
+            return String.Format("StorytellerChangeLetterDescription".Translate(), Current.Game.storyteller.def.label);
         }
 
         public static void LogStorytellers(IEnumerable<StorytellerDef> storytellers)
@@ -29,7 +30,7 @@ namespace Hotseat
 
         public static void SendStorytellerChangeLetter()
         {
-            Find.LetterStack.ReceiveLetter("StorytellerChangeTitle".Translate(), GetStorytellerChangeDescription(), LetterDefOf.NeutralEvent, null);
+            Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent, null);
             Log.Message("Storyteller changed.");
         }
 

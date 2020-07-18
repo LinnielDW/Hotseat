@@ -19,4 +19,7 @@ namespace Hotseat
         }
 
     }
+
+    //TODO: check out how progress renderer kicks off a sequence to screencap and adapt that to storyteller changing
+    //Map component for progress renderer, game condition for wave based survival
 }
