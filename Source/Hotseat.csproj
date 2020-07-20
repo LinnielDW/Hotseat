@@ -244,6 +244,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HotseatGameComponent.cs" />
     <Compile Include="HotseatSettings.cs" />
     <Compile Include="HotseatUtils.cs" />
     <Compile Include="PatchHStoryteller.cs" />
