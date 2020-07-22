@@ -31,7 +31,7 @@ namespace Hotseat
         public static void SendStorytellerChangeLetter()
         {
             Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent, null);
-            Log.Message("Storyteller changed.");
+            //Log.Message("Storyteller changed.");
         }
 
         public static IEnumerable<StorytellerDef> GetStorytellersFiltered()
@@ -67,13 +67,13 @@ namespace Hotseat
 
                     SendStorytellerChangeLetter();
 
-                    Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
+                    //Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
                 }
                 else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell Arquebus.");
             }
             else
             {
-                Log.Message("Storyteller remains... for now");
+                //Log.Message("Storyteller remains... for now");
             }
         }
 
@@ -81,7 +81,7 @@ namespace Hotseat
         {
             IEnumerable<StorytellerDef> storytellersFiltered = GetStorytellersFiltered();
 
-            LogStorytellers(storytellersFiltered);
+            //LogStorytellers(storytellersFiltered);
 
             if (storytellersFiltered.Count() > 0)
             {

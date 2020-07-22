@@ -15,8 +15,6 @@ namespace Hotseat
 
             var harmony = new Harmony("com.arquebus.rimworld.mod.hotseat");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            Log.Message("Hotseat Loaded");
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

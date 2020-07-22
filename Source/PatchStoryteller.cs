@@ -11,7 +11,7 @@ namespace Hotseat
         static void Postfix()
         {
             if (HotseatSettings.enableStorytellerSwitching) {
-                Log.Message("TryExecute Postfix: Storyteller before is:" + Current.Game.storyteller.def.defName);
+                //Log.Message("TryExecute Postfix: Storyteller before is:" + Current.Game.storyteller.def.defName);
                 HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnEventChance);
             }
         }

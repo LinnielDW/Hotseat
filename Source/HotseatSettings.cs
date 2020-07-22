@@ -60,9 +60,6 @@ namespace Hotseat
             DrawLabelledNumericSetting(settingsList, ref changeOnQuadrumChance, nameof(changeOnQuadrumChance));
             DrawLabelledNumericSetting(settingsList, ref changeOnEventChance, nameof(changeOnEventChance));
 
-            //listingStandard.Label("exampleFloatExplanation");
-            //exampleFloat = listingStandard.Slider(exampleFloat, 10f, 300f);
-
             settingsList.NewColumn();
             DrawStorytellersEnabledSettingsDynamic(settingsList);
 

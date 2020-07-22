@@ -17,11 +17,11 @@ namespace Hotseat
             {
                 if (currentTick % 3600000 == 0) //Year
                 {
-                    Log.Message("Year happened. Check if storyteller changed.");
+                    //Log.Message("Year happened. Check if storyteller changed.");
                     HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnYearChance);
                     return;
                 }
-                Log.Message("Quadrum happened. Check if storyteller changed.");
+                //Log.Message("Quadrum happened. Check if storyteller changed.");
                 HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnQuadrumChance);
             }
         }
