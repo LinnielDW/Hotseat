@@ -11,9 +11,7 @@ namespace Hotseat
     class HotseatUtils
     {
         public static string GetStorytellerChangeLetterDescription()
-        {
-            //TODO: change these strings to translation parts
-            
+        {   
             return String.Format("StorytellerChangeLetterDescription".Translate(), Current.Game.storyteller.def.label);
         }
 
@@ -69,12 +67,12 @@ namespace Hotseat
 
                     //Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
                 }
-                else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell Arquebus.");
+                else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell the mod author(Arquebus).");
             }
-            else
-            {
-                //Log.Message("Storyteller remains... for now");
-            }
+            //else
+            //{
+            //    Log.Message("Storyteller remains... for now");
+            //}
         }
 
         private static StorytellerDef ChooseStoryTeller()
@@ -86,7 +84,7 @@ namespace Hotseat
             if (storytellersFiltered.Count() > 0)
             {
                 StorytellerDef newStorytellerDef = storytellersFiltered.RandomElement();
-                Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
+                //Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
 
                 return newStorytellerDef;
             }
