@@ -15,6 +15,7 @@ namespace Hotseat
     public class HotseatSettings : ModSettings
     {
         public static bool enableStorytellerSwitching = true;
+        public static bool enableStorytellerSwitchNotification = true;
         public static int changeOnEventChance = 10;
         public static int changeOnYearChance = 85;
         public static int changeOnQuadrumChance = 25;
@@ -22,10 +23,11 @@ namespace Hotseat
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref enableStorytellerSwitching, "enableStorytellerSwitching");
-            Scribe_Values.Look(ref changeOnEventChance, "changeOnEventChance");
-            Scribe_Values.Look(ref changeOnYearChance, "changeOnYearChance");
-            Scribe_Values.Look(ref changeOnQuadrumChance, "changeOnQuadrumChance");
+            Scribe_Values.Look(ref enableStorytellerSwitching, "enableStorytellerSwitching", true);
+            Scribe_Values.Look(ref enableStorytellerSwitchNotification, "enableStorytellerSwitchNotification", true);
+            Scribe_Values.Look(ref changeOnEventChance, "changeOnEventChance", 10);
+            Scribe_Values.Look(ref changeOnYearChance, "changeOnYearChance", 85);
+            Scribe_Values.Look(ref changeOnQuadrumChance, "changeOnQuadrumChance", 25);
 
             Scribe_Collections.Look(ref storyTellersEnabledDictionary, "storyTellersEnabled", LookMode.Value, LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.LoadingVars)
@@ -55,6 +57,7 @@ namespace Hotseat
             settingsList.Begin(inRect);
 
             settingsList.CheckboxLabeled("EnableStorytellerSwitchingSetting".Translate(), ref enableStorytellerSwitching, "EnableStorytellerSwitchingSettingToolTip".Translate());
+            settingsList.CheckboxLabeled("enableStorytellerSwitchNotificationSetting".Translate(), ref enableStorytellerSwitchNotification, "enableStorytellerSwitchNotificationSettingToolTip".Translate());
 
             DrawLabelledNumericSetting(settingsList, ref changeOnYearChance, nameof(changeOnYearChance));
             DrawLabelledNumericSetting(settingsList, ref changeOnQuadrumChance, nameof(changeOnQuadrumChance));

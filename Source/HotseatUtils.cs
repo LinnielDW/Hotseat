@@ -63,8 +63,9 @@ namespace Hotseat
                     Current.Game.storyteller.def = storytellerDef;
                     Current.Game.storyteller.Notify_DefChanged();
 
-                    SendStorytellerChangeLetter();
-
+                    if (HotseatSettings.enableStorytellerSwitchNotification) {
+                        SendStorytellerChangeLetter();
+                    }
                     //Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
                 }
                 else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell the mod author(Arquebus).");

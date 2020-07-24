@@ -4,6 +4,10 @@
   <HotseatSettingsTitle>Hotseat</HotseatSettingsTitle>
   <EnableStorytellerSwitchingSetting>Enable storyteller switching</EnableStorytellerSwitchingSetting>
   <EnableStorytellerSwitchingSettingToolTip>Enables Hotseat to dynamically change your storyteller midgame.</EnableStorytellerSwitchingSettingToolTip>
+
+  <enableStorytellerSwitchNotificationSetting>Notify on storyteller switch</enableStorytellerSwitchNotificationSetting>
+  <enableStorytellerSwitchNotificationSettingToolTip>Enables notifications to the player when storyteller switches.</enableStorytellerSwitchNotificationSettingToolTip>
+  
   <StorytellersArrayEnabledSettingTitle>Storytllers Enabled</StorytellersArrayEnabledSettingTitle>
   <StorytellersArrayEnabledSettingTooltip>Storytellers that Hotseat is allowed to switch to.</StorytellersArrayEnabledSettingTooltip>
   
