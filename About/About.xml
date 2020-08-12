@@ -1,5 +1,5 @@
 <ModMetaData>
-	<name>Hotseat</name>
+	<name>Hotseat - Dynamic Storyteller Switcher</name>
 	<author>Arquebus</author>
     <packageId>Arquebus.Hotseat</packageId>
 	<description>A mod which dynamically changes your storyteller from time to time. Just to keep things interesting.\nSupports all storytellers.</description>
