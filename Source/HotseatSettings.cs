@@ -64,7 +64,7 @@ namespace Hotseat
             DrawLabelledNumericSetting(settingsList, ref changeOnEventChance, nameof(changeOnEventChance));
 
             settingsList.NewColumn();
-            DrawStorytellersEnabledSettingsDynamic(settingsList);
+            DrawStorytellersEnabledSettingsDynamic(settingsList, inRect);
 
             settingsList.End();
         }
@@ -82,18 +82,38 @@ namespace Hotseat
             Widgets.TextFieldNumeric(numericSettingRect.RightPart(0.2f).Rounded(), ref settingValue, ref settingValueStringBuffer, 0, 100);
         }
 
-        private void DrawStorytellersEnabledSettingsDynamic(Listing_Standard listingStandard)
+        private void DrawStorytellersEnabledSettingsDynamic(Listing_Standard listingStandard, Rect inRect)
         {
             Text.Font = GameFont.Medium;
             listingStandard.Label("StorytellersArrayEnabledSettingTitle".Translate(), -1, "StorytellersArrayEnabledSettingTooltip".Translate());
             Text.Font = GameFont.Small;
 
-            foreach (StorytellerDef storyteller in HotseatStatics.storytellers)
-            {
-                StorytellerEnabled storytellerEnabledSetting = GetOrCreateStorytellerEnabledSetting(storyteller.defName);
+            
+            Vector2 scrollPosition = Vector2.zero;
+            int rowCount = HotseatStatics.storytellers.Count();
+            Rect scrollRect = new Rect(0f, 0f, inRect.width, Text.LineHeight * rowCount * 20);
 
-                listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
+            Log.Message(""+ (inRect.height - listingStandard.CurHeight - 20f));
+            Rect outRect = new Rect(inRect.x + listingStandard.ColumnWidth + 20f, inRect.y, inRect.width, inRect.height - listingStandard.CurHeight - 20f);
+            listingStandard.BeginScrollView(outRect, ref scrollPosition, ref scrollRect);
+
+
+
+            for (int i = 0; i < 20; i++)
+            {
+                foreach (StorytellerDef storyteller in HotseatStatics.storytellers)
+                {
+                    StorytellerEnabled storytellerEnabledSetting = GetOrCreateStorytellerEnabledSetting(storyteller.defName);
+
+                    listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
+                }
             }
+
+
+
+            listingStandard.EndScrollView(ref scrollRect);
+            //Widgets.EndScrollView();
+
         }
     }
 
