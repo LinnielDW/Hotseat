@@ -11,18 +11,20 @@ namespace Hotseat
         public override void GameComponentTick()
         {
             base.GameComponentTick();
-
-            int currentTick = Find.TickManager.TicksGame;
-            if (currentTick % 900000 == 0) //Quadrum
+            if (HotseatSettings.enableStorytellerSwitching)
             {
-                if (currentTick % 3600000 == 0) //Year
+                int currentTick = Find.TickManager.TicksGame;
+                if (currentTick % 900000 == 0) //Quadrum
                 {
-                    //Log.Message("Year happened. Check if storyteller changed.");
-                    HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnYearChance);
-                    return;
+                    if (currentTick % 3600000 == 0) //Year
+                    {
+                        //Log.Message("Year happened. Check if storyteller changed.");
+                        HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnYearChance);
+                        return;
+                    }
+                    //Log.Message("Quadrum happened. Check if storyteller changed.");
+                    HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnQuadrumChance);
                 }
-                //Log.Message("Quadrum happened. Check if storyteller changed.");
-                HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnQuadrumChance);
             }
         }
     }
