@@ -21,6 +21,9 @@ namespace Hotseat
         public static int changeOnQuadrumChance = 25;
         public static Dictionary<string, StorytellerEnabled> storyTellersEnabledDictionary = new Dictionary<string, StorytellerEnabled>();
 
+
+        private static Vector2 scrollPosition = Vector2.zero;
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref enableStorytellerSwitching, "enableStorytellerSwitching", true);
@@ -53,7 +56,7 @@ namespace Hotseat
         public void DoWindowContents(Rect inRect)
         {
             Listing_Standard settingsList = new Listing_Standard();
-            settingsList.ColumnWidth = inRect.width / 2f - 20f;
+            settingsList.ColumnWidth = (inRect.width / 2f) - 20f;
             settingsList.Begin(inRect);
 
             settingsList.CheckboxLabeled("EnableStorytellerSwitchingSetting".Translate(), ref enableStorytellerSwitching, "EnableStorytellerSwitchingSettingToolTip".Translate());
@@ -87,32 +90,25 @@ namespace Hotseat
             Text.Font = GameFont.Medium;
             listingStandard.Label("StorytellersArrayEnabledSettingTitle".Translate(), -1, "StorytellersArrayEnabledSettingTooltip".Translate());
             Text.Font = GameFont.Small;
-
             
-            Vector2 scrollPosition = Vector2.zero;
             int rowCount = HotseatStatics.storytellers.Count();
-            Rect scrollRect = new Rect(0f, 0f, inRect.width, Text.LineHeight * rowCount * 20);
 
-            Log.Message(""+ (inRect.height - listingStandard.CurHeight - 20f));
-            Rect outRect = new Rect(inRect.x + listingStandard.ColumnWidth + 20f, inRect.y, inRect.width, inRect.height - listingStandard.CurHeight - 20f);
-            listingStandard.BeginScrollView(outRect, ref scrollPosition, ref scrollRect);
+            Rect viewRect = new Rect(listingStandard.ColumnWidth + 20f, listingStandard.CurHeight, listingStandard.ColumnWidth, inRect.height - listingStandard.CurHeight);
+            Rect scrollRect = new Rect(0f, 0f, viewRect.width - 16f, (Text.LineHeight + listingStandard.verticalSpacing) * rowCount);
 
+            Widgets.BeginScrollView(viewRect, ref scrollPosition, scrollRect);
+            listingStandard.ColumnWidth -= 16f; //This line is needed because the listingstandard and scrollrect are not synced. When one changes you need to change the other.
 
-
-            for (int i = 0; i < 20; i++)
+            listingStandard.Begin(scrollRect);
+            foreach (StorytellerDef storyteller in HotseatStatics.storytellers)
             {
-                foreach (StorytellerDef storyteller in HotseatStatics.storytellers)
-                {
-                    StorytellerEnabled storytellerEnabledSetting = GetOrCreateStorytellerEnabledSetting(storyteller.defName);
+                StorytellerEnabled storytellerEnabledSetting = GetOrCreateStorytellerEnabledSetting(storyteller.defName);
 
-                    listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
-                }
+                listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
             }
 
-
-
-            listingStandard.EndScrollView(ref scrollRect);
-            //Widgets.EndScrollView();
+            listingStandard.End();
+            Widgets.EndScrollView();
 
         }
     }
