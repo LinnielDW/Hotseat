@@ -43,7 +43,7 @@ namespace Hotseat
 
         public static void TryChangeStoryTeller(int chanceTreshold)
         {
-            if (Rand.RangeInclusive(0, 100) <= chanceTreshold)
+            if (Rand.RangeInclusive(1, 100) > chanceTreshold)
             {
                 //Log.Message("Storyteller remains... for now");
                 return;
