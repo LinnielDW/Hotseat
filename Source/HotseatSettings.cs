@@ -95,22 +95,23 @@ namespace Hotseat
             Text.Font = GameFont.Small;
             
             var rowCount = HotseatStatics.storytellers.Count();
-            var viewRect = new Rect(listingStandard.ColumnWidth + 20f, listingStandard.CurHeight, listingStandard.ColumnWidth, inRect.height - listingStandard.CurHeight);
-            var scrollRect = new Rect(0f, 0f, viewRect.width - 16f, CalculateScrollHeight(listingStandard, rowCount));
+            var windowRect = new Rect(listingStandard.ColumnWidth + 20f, listingStandard.CurHeight, listingStandard.ColumnWidth, inRect.height - listingStandard.CurHeight);
+            var scrollRect = new Rect(0f, 0f, windowRect.width - 16f, CalculateScrollHeight(listingStandard, rowCount));
 
-            Widgets.BeginScrollView(viewRect, ref scrollPosition, scrollRect);
+            Widgets.BeginScrollView(windowRect, ref scrollPosition, scrollRect);
             listingStandard.ColumnWidth -= 16f; //This line is needed because the listingstandard and scrollrect are not synced. When one changes you need to change the other.
             listingStandard.Begin(scrollRect);
             
             foreach (var storyteller in HotseatStatics.storytellers)
             {
                 var storytellerEnabledSetting = GetOrCreateStorytellerEnabledSetting(storyteller.defName);
-                listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
                 
+                listingStandard.CheckboxLabeled(storyteller.label, ref storytellerEnabledSetting.storytellerEnabledBool, storyteller.description);
                 if (storytellerEnabledSetting.storytellerEnabledBool)
                 {
                     DrawWeightSlider(listingStandard, storytellerEnabledSetting);
                 }
+                
                 listingStandard.Gap(5f);
             }
             
@@ -118,17 +119,18 @@ namespace Hotseat
             Widgets.EndScrollView();
         }
 
-        private static void DrawWeightSlider(Listing_Standard listingStandard,
-            StorytellerHotseatStettings storytellerEnabledSetting)
+        private static void DrawWeightSlider(Listing_Standard listingStandard, StorytellerHotseatStettings storytellerEnabledSetting)
         {
             var rect = listingStandard.GetRect(24f);
 
             storytellerEnabledSetting.storytellerWeight =
-                Widgets.HorizontalSlider(rect,
+                Widgets.HorizontalSlider(
+                    rect,
                     storytellerEnabledSetting.storytellerWeight,
                     1f, 100f, false,
                     storytellerEnabledSetting.storytellerWeight + "x likely",
-                    "1", "100", 1f);
+                    "1", "100", 1f
+                );
         }
 
         private static float CalculateScrollHeight(Listing_Standard listingStandard, int rowCount) {

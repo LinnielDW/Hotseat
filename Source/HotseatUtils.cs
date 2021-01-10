@@ -29,7 +29,6 @@ namespace Hotseat
         public static void SendStorytellerChangeLetter()
         {
             Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent, null);
-            //Log.Message("Storyteller changed.");
         }
 
         public static IEnumerable<StorytellerDef> GetStorytellersFiltered()
@@ -46,34 +45,32 @@ namespace Hotseat
         {
             if (Rand.RangeInclusive(0, 100) <= chanceTreshold)
             {
-                StorytellerDef storytellerDef;
-
-                try
-                {
-                    storytellerDef = ChooseStoryTeller();
-                }
-                catch
-                {
-                    Log.Warning("There were no storytellers that could be changed to. Keeping current storyteller.");
-                    return;
-                }
-
-                if (storytellerDef != null)
-                {
-                    Current.Game.storyteller.def = storytellerDef;
-                    Current.Game.storyteller.Notify_DefChanged();
-
-                    if (HotseatSettings.enableStorytellerSwitchNotification) {
-                        SendStorytellerChangeLetter();
-                    }
-                    //Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
-                }
-                else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell the mod author(Arquebus).");
+                //Log.Message("Storyteller remains... for now");
+                return;
             }
-            //else
-            //{
-            //    Log.Message("Storyteller remains... for now");
-            //}
+            
+            StorytellerDef storytellerDef;
+            try
+            {
+                storytellerDef = ChooseStoryTeller();
+            }
+            catch
+            {
+                Log.Warning("There were no storytellers that could be changed to. Keeping current storyteller.");
+                return;
+            }
+
+            if (storytellerDef != null)
+            {
+                Current.Game.storyteller.def = storytellerDef;
+                Current.Game.storyteller.Notify_DefChanged();
+
+                if (HotseatSettings.enableStorytellerSwitchNotification) {
+                    SendStorytellerChangeLetter();
+                }
+                //Log.Message("Storyteller is now:" + Current.Game.storyteller.def.defName);
+            }
+            else Log.Error("null chosen as storyteller. This should not happen, if you see this, please tell the mod author(Arquebus).");
         }
 
         private static StorytellerDef ChooseStoryTeller()
