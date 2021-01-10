@@ -1,4 +1,4 @@
-﻿using RimWorld;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +35,9 @@ namespace Hotseat
         public static IEnumerable<StorytellerDef> GetStorytellersFiltered()
         {
             return DefDatabase<StorytellerDef>.AllDefs.Where(storytellerDef => storytellerDef.listVisible                    //storyteller is visible
-                            && HotseatSettings.storyTellersEnabledDictionary.ContainsKey(storytellerDef.defName)             //storyteller exists in dictionary (all storytellers should default to true)
+                            && HotseatSettings.storytellerSettingsDictionary.ContainsKey(storytellerDef.defName)             //storyteller exists in dictionary (all storytellers should default to true)
                             && storytellerDef.defName != Current.Game.storyteller.def.defName                                //storyteller does not equal current storyteller
-                            && HotseatSettings.storyTellersEnabledDictionary[storytellerDef.defName].storytellerEnabledBool  //storyteller is allowed to be switched to
+                            && HotseatSettings.storytellerSettingsDictionary[storytellerDef.defName].storytellerEnabledBool  //storyteller is allowed to be switched to
                         );
         }
 
@@ -78,21 +78,15 @@ namespace Hotseat
 
         private static StorytellerDef ChooseStoryTeller()
         {
-            IEnumerable<StorytellerDef> storytellersFiltered = GetStorytellersFiltered();
-
             //LogStorytellers(storytellersFiltered);
 
-            if (storytellersFiltered.Count() > 0)
-            {
-                StorytellerDef newStorytellerDef = storytellersFiltered.RandomElement();
+            var storytellerDefs =  GetStorytellersFiltered().ToList();
+            if (storytellerDefs.Any()) {
+                var newStorytellerDef = storytellerDefs.RandomElement();
                 //Log.Message("Storyteller chosen is: " + newStorytellerDef.defName);
-
                 return newStorytellerDef;
             }
-            else
-            {
-                throw new System.Exception("No valid storytellers");
-            }
+            throw new Exception("No valid storytellers");
         }
     }
 }
