@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -21,11 +23,12 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Reference Include="0Harmony, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.1\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.4\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -302,16 +305,23 @@
   <ItemGroup>
     <Compile Include="HotseatGameComponent.cs" />
     <Compile Include="HotseatSettings.cs" />
-    <Compile Include="HotseatUtils.cs" />
     <Compile Include="PatchStoryteller.cs" />
     <Compile Include="Hotseat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorytellerEnabled.cs" />
+    <Compile Include="SettingsDomain\StorytellerHotseatStettings.cs" />
+    <Compile Include="SettingsDomain\WeightedChoice.cs" />
+    <Compile Include="Utils\DecisionUtil.cs" />
+    <Compile Include="Utils\SettingsDrawUtil.cs" />
+    <Compile Include="Utils\NotifierUtil.cs" />
+    <Compile Include="Utils\StorytellerLogUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

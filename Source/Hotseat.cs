@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using System.Reflection;
+using Hotseat.Utils;
 using UnityEngine;
 using Verse;
 
@@ -20,7 +21,7 @@ namespace Hotseat
         public override void DoSettingsWindowContents(Rect inRect)
         {
             base.DoSettingsWindowContents(inRect);
-            settings.DoWindowContents(inRect);
+            SettingsDrawUtil.DoWindowContents(inRect);
         }
 
         public override string SettingsCategory()
