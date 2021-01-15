@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using Hotseat.Utils;
+using Verse;
 
 namespace Hotseat
 {
@@ -13,18 +14,18 @@ namespace Hotseat
             base.GameComponentTick();
             if (!HotseatSettings.enableStorytellerSwitching) return;
             
-            int currentTick = Find.TickManager.TicksGame;
+            var currentTick = Find.TickManager.TicksGame;
             
             if (currentTick % 900000 == 0) //Quadrum
             {
                 if (currentTick % 3600000 == 0) //Year
                 {
                     //Log.Message("Year happened. Check if storyteller changed.");
-                    HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnYearChance);
+                    DecisionUtil.TryChangeStoryTeller(HotseatSettings.changeOnYearChance);
                     return;
                 }
                 //Log.Message("Quadrum happened. Check if storyteller changed.");
-                HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnQuadrumChance);
+                DecisionUtil.TryChangeStoryTeller(HotseatSettings.changeOnQuadrumChance);
             }
         }
     }

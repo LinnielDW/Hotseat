@@ -305,11 +305,15 @@
   <ItemGroup>
     <Compile Include="HotseatGameComponent.cs" />
     <Compile Include="HotseatSettings.cs" />
-    <Compile Include="HotseatUtils.cs" />
     <Compile Include="PatchStoryteller.cs" />
     <Compile Include="Hotseat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsDomain\StorytellerHotseatStettings.cs" />
+    <Compile Include="SettingsDomain\WeightedChoice.cs" />
+    <Compile Include="Utils\DecisionUtil.cs" />
+    <Compile Include="Utils\SettingsDrawUtil.cs" />
+    <Compile Include="Utils\NotifierUtil.cs" />
+    <Compile Include="Utils\StorytellerLogUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests" />

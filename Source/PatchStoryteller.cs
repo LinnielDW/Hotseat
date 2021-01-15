@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Hotseat.Utils;
 using RimWorld;
 using Verse;
 
@@ -25,7 +26,7 @@ namespace Hotseat
         {
             if (HotseatSettings.enableStorytellerSwitching) {
                 //Log.Message("TryExecute Postfix: Storyteller before is:" + Current.Game.storyteller.def.defName);
-                HotseatUtils.TryChangeStoryTeller(HotseatSettings.changeOnEventChance);
+                DecisionUtil.TryChangeStoryTeller(HotseatSettings.changeOnEventChance);
             }
         }
 

@@ -8,8 +8,11 @@
   <EnableStorytellerSwitchNotificationSetting>Notify on storyteller switch</EnableStorytellerSwitchNotificationSetting>
   <EnableStorytellerSwitchNotificationSettingToolTip>Enables notifications to the player when storyteller switches.</EnableStorytellerSwitchNotificationSettingToolTip>
   
-  <StorytellersArrayEnabledSettingTitle>Storytllers Enabled</StorytellersArrayEnabledSettingTitle>
-  <StorytellersArrayEnabledSettingTooltip>Storytellers that Hotseat is allowed to switch to.</StorytellersArrayEnabledSettingTooltip>
+  <EnableStorytellerSwitchingWeightedSetting>Enable weighted storyteller selection</EnableStorytellerSwitchingWeightedSetting>
+  <EnableStorytellerSwitchingWeightedSettingToolTip>Enables user defined weighted storyteller selection.\nSliders on the specific storyteller settings panel will appear and allow you to decide on how often you want a storyteller to be picked.</EnableStorytellerSwitchingWeightedSettingToolTip>
+  
+  <StorytellersArrayEnabledSettingTitle>Specific Storyteller Settings</StorytellersArrayEnabledSettingTitle>
+  <StorytellersArrayEnabledSettingTooltip>Specific settings for each given storyteller.</StorytellersArrayEnabledSettingTooltip>
   
   <changeOnEventChance>Percent chance per event</changeOnEventChance>
   <changeOnEventChanceTooltip>Percentage chance that the storyteller changes after an event.</changeOnEventChanceTooltip>
@@ -22,5 +25,7 @@
   
   <StorytellerChangeLetterTitle>Storyteller Changed</StorytellerChangeLetterTitle>
   <StorytellerChangeLetterDescription>The storyteller has changed!\n Now {0} is in charge!</StorytellerChangeLetterDescription>
+  
+  <xAsLikely> times as likely</xAsLikely>
 
 </LanguageData>
