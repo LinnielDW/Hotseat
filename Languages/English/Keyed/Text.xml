@@ -24,7 +24,7 @@
   <changeOnYearChanceTooltip>Percentage chance that the storyteller changes after a new year.</changeOnYearChanceTooltip>
   
   <StorytellerChangeLetterTitle>Storyteller Changed</StorytellerChangeLetterTitle>
-  <StorytellerChangeLetterDescription>The storyteller has changed!\n Now {0} is in charge!</StorytellerChangeLetterDescription>
+  <StorytellerChangeLetterDescription>The storyteller has changed!\n Now {0} is in charge!\n\n{1}</StorytellerChangeLetterDescription>
   
   <xAsLikely> times as likely</xAsLikely>
 
