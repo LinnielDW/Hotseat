@@ -10,9 +10,9 @@ namespace Hotseat.Utils
             Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent, null);
         }
 
-        private static string GetStorytellerChangeLetterDescription()
+        private static TaggedString GetStorytellerChangeLetterDescription()
         {   
-            return string.Format("StorytellerChangeLetterDescription".Translate(), Current.Game.storyteller.def.label);
+            return "StorytellerChangeLetterDescription".Translate(Current.Game.storyteller.def.label, Current.Game.storyteller.def.description);
         }
     }
 }
