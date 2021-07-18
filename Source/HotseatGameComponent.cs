@@ -12,6 +12,7 @@ namespace Hotseat
         public override void GameComponentTick()
         {
             base.GameComponentTick();
+            //TODO: hook into Rimworld.DateNotifier logic to determine month instead.
             if (!HotseatSettings.enableStorytellerSwitching) return;
             
             var currentTick = Find.TickManager.TicksGame;
