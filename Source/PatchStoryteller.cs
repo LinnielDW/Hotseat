@@ -5,6 +5,7 @@ using Verse;
 
 namespace Hotseat
 {
+    /*
     [HarmonyPatch(typeof(IncidentWorker))]
     [HarmonyPatch("TryExecute")]
     public static class PatchStorytellerPrefix
@@ -17,6 +18,7 @@ namespace Hotseat
         }
 
     }
+    */
     
     [HarmonyPatch(typeof(IncidentWorker))]
     [HarmonyPatch("TryExecute")]
