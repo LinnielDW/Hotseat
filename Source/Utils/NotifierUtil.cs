@@ -7,7 +7,7 @@ namespace Hotseat.Utils
     {
         public static void SendStorytellerChangeLetter()
         {
-            Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent, null);
+            Find.LetterStack.ReceiveLetter("StorytellerChangeLetterTitle".Translate(), GetStorytellerChangeLetterDescription(), LetterDefOf.NeutralEvent);
         }
 
         private static TaggedString GetStorytellerChangeLetterDescription()
